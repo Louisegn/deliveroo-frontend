@@ -7,7 +7,7 @@ function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [basket, setBasket] = useState([]);
-  const [total, setTotal] = useState(0);
+  // const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +22,15 @@ function App() {
     };
     fetchData();
   }, []);
+
+  const basketPrice = (num) => {
+    let total = 0;
+    for (let i = 0; i < basket.length; i++) {
+      total += basket[i].price * basket[i].quantity;
+    }
+    return total + num;
+  };
+
   return (
     <div className="App">
       {isLoading === true ? (
@@ -53,8 +62,51 @@ function App() {
                               onClick={() => {
                                 // console.log("YOO", basket[index].meal);
                                 // console.log("HEYY", meals.title);
-                                if (!basket[index]) {
+
+                                // if (!basket[index]) {
+                                //   console.log(index);
+                                //   // if (!basket.length) {
+                                //   console.log("yess");
+
+                                //   const newBasket = [...basket];
+                                //   newBasket.push({
+                                //     meal: meals.title,
+                                //     price: meals.price,
+                                //     quantity: 1,
+                                //   });
+                                //   setBasket(newBasket);
+                                // } else if (
+                                //   basket[index].meal.indexOf(meals.title) !== -1
+                                // ) {
+                                //   const newBasket = [...basket];
+                                //   newBasket[index].quantity++;
+                                //   setBasket(newBasket);
+                                // } else {
+                                //   console.log("ehh noop");
+                                // }
+
+                                if (basket.length) {
+                                  // console.log(index);
+                                  // if (!basket.length) {
                                   console.log("yess");
+                                  if (
+                                    basket[index].meal.indexOf(meals.title) !==
+                                    -1
+                                  ) {
+                                    console.log("heyyoo");
+                                    const newBasket = [...basket];
+                                    newBasket[index].quantity++;
+                                    setBasket(newBasket);
+                                  } else {
+                                    const newBasket = [...basket];
+                                    newBasket.push({
+                                      meal: meals.title,
+                                      price: meals.price,
+                                      quantity: 1,
+                                    });
+                                    setBasket(newBasket);
+                                  }
+                                } else {
                                   const newBasket = [...basket];
                                   newBasket.push({
                                     meal: meals.title,
@@ -62,14 +114,6 @@ function App() {
                                     quantity: 1,
                                   });
                                   setBasket(newBasket);
-                                } else if (
-                                  basket[index].meal.indexOf(meals.title) !== -1
-                                ) {
-                                  const newBasket = [...basket];
-                                  newBasket[index].quantity++;
-                                  setBasket(newBasket);
-                                } else {
-                                  console.log("ehh noop");
                                 }
                               }}
                             >
@@ -138,27 +182,15 @@ function App() {
                   </div>
                 );
               })}
-              {basket.map((elem, index) => {
-                // const newCounters = [...counters];
-                // newCounters[index] += 1;
-                // setCounters(newCounters);
-
-                const newTotal = [...total];
-                newTotal += elem.price * elem.quantity;
-                setTotal(newTotal);
-                // return null;
-                console.log(elem.price * elem.quantity);
-              })}
-
               <div className="sous-total">
                 <p>Sous-total</p>
-                <p></p>
+                <p>{basketPrice(0)}</p>
                 <p>Frais de livraison</p>
                 <p>2,50 €</p>
               </div>
               <div className="total">
                 <p>Total</p>
-                <p>€€</p>
+                <p>{basketPrice(2.5)}</p>
               </div>
             </div>
           </div>
