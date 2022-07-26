@@ -1,1 +1,110 @@
+.App {
+  padding: 0 114px;
+  background-color: #f2f5f5;
+}
 
+.mainPic {
+  height: 200px;
+  width: 350px;
+  border-radius: 10px;
+}
+
+.menuPic {
+  height: 130px;
+  width: 130px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: auto;
+}
+
+header {
+  display: flex;
+  /* border: green solid 2px; */
+}
+
+header div:first-child {
+  border: red solid 2px;
+}
+
+header div:first-child p {
+  color: #868a8a;
+}
+/* .fakeBody {
+  border: blue solid 2px;
+}
+
+.fakeBody h2 {
+  padding: 0 246px;
+}
+main div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+main div div {
+  height: 160px;
+}
+
+.jppleretour {
+  background-color: #ffffff;
+  margin: 10px;
+  border-radius: 10px;
+  height: 160px;
+  width: calc(50% - 40px);
+}
+
+.descript {
+  height: 130px;
+  width: 220px;
+  overflow: hidden;
+}
+
+
+
+.ok {
+  display: flex;
+}
+*/
+
+.menu-basket {
+  display: flex;
+}
+.basket {
+  height: 300px;
+  width: 25%;
+  background-color: #ffffff;
+}
+
+.menu {
+  border: green solid 2px;
+  width: 75%;
+}
+
+.menu-div1 {
+  border: blue solid 2px;
+  width: 50%;
+  box-sizing: border-box;
+  display: flex;
+  background-color: #ffffff;
+}
+
+.descript {
+  border: yellow solid 2px;
+  width: 60%;
+  box-sizing: border-box;
+}
+
+.menu-container {
+  border: red solid 2px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.meal-descript {
+  height: 40px;
+  overflow: hidden;
+}
+.descript-no-pic {
+  width: 100%;
+}
