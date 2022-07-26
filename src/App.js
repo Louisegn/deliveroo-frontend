@@ -7,7 +7,6 @@ function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [basket, setBasket] = useState([]);
-  // const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +27,7 @@ function App() {
     for (let i = 0; i < basket.length; i++) {
       total += basket[i].price * basket[i].quantity;
     }
-    return total + num;
+    return (total + num).toFixed(2);
   };
 
   return (
@@ -60,44 +59,28 @@ function App() {
                               key={index}
                               className="menu-div1"
                               onClick={() => {
-                                // console.log("YOO", basket[index].meal);
-                                // console.log("HEYY", meals.title);
-
-                                // if (!basket[index]) {
-                                //   console.log(index);
-                                //   // if (!basket.length) {
-                                //   console.log("yess");
-
-                                //   const newBasket = [...basket];
-                                //   newBasket.push({
-                                //     meal: meals.title,
-                                //     price: meals.price,
-                                //     quantity: 1,
-                                //   });
-                                //   setBasket(newBasket);
-                                // } else if (
-                                //   basket[index].meal.indexOf(meals.title) !== -1
-                                // ) {
-                                //   const newBasket = [...basket];
-                                //   newBasket[index].quantity++;
-                                //   setBasket(newBasket);
-                                // } else {
-                                //   console.log("ehh noop");
-                                // }
-
                                 if (basket.length) {
-                                  // console.log(index);
-                                  // if (!basket.length) {
-                                  console.log("yess");
-                                  if (
-                                    basket[index].meal.indexOf(meals.title) !==
-                                    -1
-                                  ) {
-                                    console.log("heyyoo");
+                                  // console.log("yess");
+                                  // const valid = basket.find(
+                                  //   (elem) => elem.meal === meals.title
+                                  // );
+                                  // console.log("VALID", valid);
+                                  let test;
+
+                                  for (let i = 0; i < basket.length; i++) {
+                                    if (basket[i].meal === meals.title)
+                                      test = basket[i];
+                                  }
+                                  // console.log("TEST", test);
+
+                                  if (test) {
+                                    // console.log("heyyoo");
+                                    console.log(index);
                                     const newBasket = [...basket];
-                                    newBasket[index].quantity++;
+                                    newBasket[basket.indexOf(test)].quantity++;
                                     setBasket(newBasket);
                                   } else {
+                                    // console.log("ehh nooop");
                                     const newBasket = [...basket];
                                     newBasket.push({
                                       meal: meals.title,
@@ -158,6 +141,9 @@ function App() {
                           onClick={() => {
                             const newBasket = [...basket];
                             newBasket[index].quantity--;
+                            if (newBasket[index].quantity === 0) {
+                              newBasket.splice(index, 1);
+                            }
                             setBasket(newBasket);
                           }}
                         >
@@ -177,21 +163,31 @@ function App() {
                       </div>
 
                       <p>{elem.meal}</p>
-                      <p>{elem.price * elem.quantity} €</p>
+                      <p>{(elem.price * elem.quantity).toFixed(2)}€</p>
                     </div>
                   </div>
                 );
               })}
-              <div className="sous-total">
-                <p>Sous-total</p>
-                <p>{basketPrice(0)}</p>
-                <p>Frais de livraison</p>
-                <p>2,50 €</p>
-              </div>
-              <div className="total">
-                <p>Total</p>
-                <p>{basketPrice(2.5)}</p>
-              </div>
+              {basket.length ? (
+                <div>
+                  <div className="sous-total">
+                    <div className="div1">
+                      <p>Sous-total</p>
+                      <p>{basketPrice(0)}€</p>
+                    </div>
+                    <div className="div2">
+                      <p>Frais de livraison</p>
+                      <p>2,50€</p>
+                    </div>
+                  </div>
+                  <div className="total">
+                    <p>Total</p>
+                    <p>{basketPrice(2.5)}€</p>
+                  </div>
+                </div>
+              ) : (
+                <p className="empty">Votre panier est vide</p>
+              )}
             </div>
           </div>
         </div>
