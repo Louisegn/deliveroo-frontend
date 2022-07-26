@@ -1,14 +1,15 @@
-import "./App.css";
 import { useState, useEffect } from "react";
+import "./App.css";
+import "./assets/fonts.css";
 import axios from "axios";
 
 function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [basket, setBasket] = useState([]);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    // console.log("useEffect");
-
     const fetchData = async () => {
       try {
         const response = await axios.get("https://deli-backend.herokuapp.com/");
@@ -21,7 +22,6 @@ function App() {
     };
     fetchData();
   }, []);
-  // console.log(data);
   return (
     <div className="App">
       {isLoading === true ? (
@@ -47,7 +47,32 @@ function App() {
                       <div className="menu-container">
                         {elem.meals.map((meals, index) => {
                           return (
-                            <div key={index} className="menu-div1">
+                            <button
+                              key={index}
+                              className="menu-div1"
+                              onClick={() => {
+                                // console.log("YOO", basket[index].meal);
+                                // console.log("HEYY", meals.title);
+                                if (!basket[index]) {
+                                  console.log("yess");
+                                  const newBasket = [...basket];
+                                  newBasket.push({
+                                    meal: meals.title,
+                                    price: meals.price,
+                                    quantity: 1,
+                                  });
+                                  setBasket(newBasket);
+                                } else if (
+                                  basket[index].meal.indexOf(meals.title) !== -1
+                                ) {
+                                  const newBasket = [...basket];
+                                  newBasket[index].quantity++;
+                                  setBasket(newBasket);
+                                } else {
+                                  console.log("ehh noop");
+                                }
+                              }}
+                            >
                               <div
                                 className={
                                   meals.picture ? "descript" : "descript-no-pic"
@@ -67,7 +92,7 @@ function App() {
                                   alt=""
                                 />
                               )}
-                            </div>
+                            </button>
                           );
                         })}
                       </div>
@@ -76,7 +101,66 @@ function App() {
                 } else return null;
               })}
             </div>
-            <div className="basket"></div>
+            <div className="basket">
+              <div className="basket-head">Valider mon panier</div>
+
+              {basket.map((elem, index) => {
+                return (
+                  <div key={index} className="all">
+                    <div className="details">
+                      <div className="counter">
+                        <button
+                          className="butt"
+                          onClick={() => {
+                            const newBasket = [...basket];
+                            newBasket[index].quantity--;
+                            setBasket(newBasket);
+                          }}
+                        >
+                          -
+                        </button>
+                        <p>{elem.quantity}</p>
+                        <button
+                          className="butt"
+                          onClick={() => {
+                            const newBasket = [...basket];
+                            newBasket[index].quantity++;
+                            setBasket(newBasket);
+                          }}
+                        >
+                          +
+                        </button>
+                      </div>
+
+                      <p>{elem.meal}</p>
+                      <p>{elem.price * elem.quantity} €</p>
+                    </div>
+                  </div>
+                );
+              })}
+              {basket.map((elem, index) => {
+                // const newCounters = [...counters];
+                // newCounters[index] += 1;
+                // setCounters(newCounters);
+
+                const newTotal = [...total];
+                newTotal += elem.price * elem.quantity;
+                setTotal(newTotal);
+                // return null;
+                console.log(elem.price * elem.quantity);
+              })}
+
+              <div className="sous-total">
+                <p>Sous-total</p>
+                <p></p>
+                <p>Frais de livraison</p>
+                <p>2,50 €</p>
+              </div>
+              <div className="total">
+                <p>Total</p>
+                <p>€€</p>
+              </div>
+            </div>
           </div>
         </div>
       )}

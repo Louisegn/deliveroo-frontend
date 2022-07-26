@@ -1,5 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "ibm-plex-sans";
+}
+
 .App {
-  padding: 0 114px;
+  padding: 0 360px;
   background-color: #f2f5f5;
 }
 
@@ -22,89 +29,103 @@ header {
   /* border: green solid 2px; */
 }
 
-header div:first-child {
-  border: red solid 2px;
-}
-
 header div:first-child p {
   color: #868a8a;
 }
-/* .fakeBody {
-  border: blue solid 2px;
-}
-
-.fakeBody h2 {
-  padding: 0 246px;
-}
-main div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-main div div {
-  height: 160px;
-}
-
-.jppleretour {
-  background-color: #ffffff;
-  margin: 10px;
-  border-radius: 10px;
-  height: 160px;
-  width: calc(50% - 40px);
-}
-
-.descript {
-  height: 130px;
-  width: 220px;
-  overflow: hidden;
-}
-
-
-
-.ok {
-  display: flex;
-}
-*/
 
 .menu-basket {
   display: flex;
 }
-.basket {
-  height: 300px;
-  width: 25%;
-  background-color: #ffffff;
-}
 
 .menu {
-  border: green solid 2px;
+  /* border: green solid 2px; */
   width: 75%;
 }
 
 .menu-div1 {
   border: blue solid 2px;
-  width: 50%;
+  width: calc(50% - 60px);
   box-sizing: border-box;
   display: flex;
   background-color: #ffffff;
+  margin: 10px 30px;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
 }
 
 .descript {
-  border: yellow solid 2px;
+  /* border: yellow solid 2px; */
   width: 60%;
   box-sizing: border-box;
 }
 
 .menu-container {
-  border: red solid 2px;
+  /* border: red solid 2px; */
   display: flex;
   flex-wrap: wrap;
 }
 
 .meal-descript {
-  height: 40px;
+  height: 38px;
   overflow: hidden;
 }
 .descript-no-pic {
   width: 100%;
+}
+
+/* BASKET  */
+
+.basket {
+  height: 300px;
+  width: 25%;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.basket-head {
+  background-color: #00cdbd;
+  height: 50px;
+  margin: 20px 20px;
+  text-align: center;
+  padding-top: 16px;
+  box-sizing: border-box;
+  color: white;
+  border-radius: 10px;
+}
+
+.details {
+  border: red solid 1px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sous-total {
+  border: green solid 1px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.total {
+  border: blue solid 1px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 19px;
+}
+
+.counter {
+  display: flex;
+}
+
+.butt {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  color: #00cdbd;
+  border: #00cdbd solid 2px;
+  background-color: white;
+  cursor: pointer;
 }
