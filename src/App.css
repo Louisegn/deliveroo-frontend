@@ -6,17 +6,23 @@
 }
 
 .App {
-  padding: 0 360px;
+  /* padding: 0 360px; */
   background-color: #f2f5f5;
+  display: flex;
 }
 
-.mainPic {
+.App > div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.main-pic {
   height: 200px;
   width: 350px;
   border-radius: 10px;
 }
 
-.menuPic {
+.menu-pic {
   height: 130px;
   width: 130px;
   object-fit: cover;
@@ -35,11 +41,12 @@ header div:first-child p {
 }
 
 .menu-basket {
+  border: green solid 2px;
+  max-width: 1200px;
   display: flex;
 }
 
 .menu {
-  /* border: green solid 2px; */
   width: 75%;
 }
 

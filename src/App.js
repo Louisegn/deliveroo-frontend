@@ -42,7 +42,7 @@ function App() {
               <p>{data.restaurant.description}</p>
             </div>
             <div>
-              <img className="mainPic" src={data.restaurant.picture} alt="" />
+              <img className="main-pic" src={data.restaurant.picture} alt="" />
             </div>
           </header>
           <div className="menu-basket">
@@ -60,7 +60,6 @@ function App() {
                               className="menu-div1"
                               onClick={() => {
                                 if (basket.length) {
-                                  // console.log("yess");
                                   // const valid = basket.find(
                                   //   (elem) => elem.meal === meals.title
                                   // );
@@ -74,13 +73,11 @@ function App() {
                                   // console.log("TEST", test);
 
                                   if (test) {
-                                    // console.log("heyyoo");
                                     console.log(index);
                                     const newBasket = [...basket];
                                     newBasket[basket.indexOf(test)].quantity++;
                                     setBasket(newBasket);
                                   } else {
-                                    // console.log("ehh nooop");
                                     const newBasket = [...basket];
                                     newBasket.push({
                                       meal: meals.title,
@@ -114,7 +111,7 @@ function App() {
 
                               {meals.picture && (
                                 <img
-                                  className="menuPic"
+                                  className="menu-pic"
                                   src={meals.picture}
                                   alt=""
                                 />
