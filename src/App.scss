@@ -38,21 +38,65 @@
   }
 
   .main-container {
-    border: green solid 1px;
     background-color: #f3f5f5;
     padding: 30px 352px;
     display: flex;
     .menu-container {
-      border: red solid 1px;
       width: 70%;
       h2 {
         font-size: 24px;
         font-weight: bold;
       }
       .menu--catego {
-        border: solid aqua 1px;
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 25px 0 50px 0;
+
+        .dish--container {
+          border: none;
+          background-color: #ffffff;
+          width: 400px;
+          height: 160px;
+          box-sizing: border-box;
+          display: flex;
+          border-radius: 10px;
+          padding: 15px;
+          align-items: center;
+          cursor: pointer;
+          .descript {
+            box-sizing: border-box;
+            height: 100%;
+            text-align: left;
+            h3 {
+              font-size: 18px;
+              line-height: 15px;
+              color: #2e3333;
+            }
+            .details {
+              height: 38px;
+              overflow: hidden;
+              font-size: 14px;
+              line-height: 20px;
+              color: #868a8a;
+              margin-top: 14px;
+            }
+            .price {
+              font-size: 17px;
+              line-height: 14px;
+              color: #808484;
+              margin-top: 24px;
+            }
+          }
+
+          img {
+            height: 130px;
+            width: 130px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: auto;
+          }
+        }
       }
     }
     .cart {
@@ -62,45 +106,10 @@
   }
 }
 
-.menu-pic {
-  height: 130px;
-  width: 130px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin: auto;
-}
-
 .menu-basket {
   /* border: green solid 2px; */
   max-width: 1200px;
   display: flex;
-}
-
-.menu-div1 {
-  border: blue solid 2px;
-  // border: none;
-  width: calc(50% - 60px);
-  box-sizing: border-box;
-  display: flex;
-  background-color: #ffffff;
-  margin: 10px 30px;
-  border-radius: 10px;
-  padding: 10px;
-  cursor: pointer;
-}
-
-.descript {
-  border: yellow solid 2px;
-  width: 60%;
-  box-sizing: border-box;
-}
-
-.meal-descript {
-  height: 38px;
-  overflow: hidden;
-}
-.descript-no-pic {
-  width: 100%;
 }
 
 // /* BASKET  */

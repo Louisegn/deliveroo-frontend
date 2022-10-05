@@ -64,7 +64,7 @@ function App() {
                       return (
                         <button
                           key={index}
-                          className="menu-div1"
+                          className="dish--container"
                           onClick={() => {
                             if (basket.length) {
                               // const valid = basket.find(
@@ -104,23 +104,13 @@ function App() {
                             }
                           }}
                         >
-                          <div
-                            className={
-                              meals.picture ? "descript" : "descript-no-pic"
-                            }
-                          >
+                          <div className="descript">
                             <h3>{meals.title}</h3>
-                            <p className="meal-descript">{meals.description}</p>
-                            <p>{meals.price}</p>
+                            <p className="details">{meals.description}</p>
+                            <p className="price">{meals.price}</p>
                           </div>
 
-                          {meals.picture && (
-                            <img
-                              className="menu-pic"
-                              src={meals.picture}
-                              alt=""
-                            />
-                          )}
+                          {meals.picture && <img src={meals.picture} alt="" />}
                         </button>
                       );
                     })}
