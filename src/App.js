@@ -106,7 +106,9 @@ function App() {
                         >
                           <div className="descript">
                             <h3>{meals.title}</h3>
-                            <p className="details">{meals.description}</p>
+                            <p className={meals.description && "details"}>
+                              {meals.description}
+                            </p>
                             <p className="price">{meals.price}</p>
                           </div>
 
@@ -120,66 +122,74 @@ function App() {
             } else return null;
           })}
         </div>
-        <div className="cart">
-          <div className="basket-head">Valider mon panier</div>
+        <div className="right-part">
+          <div className="cart">
+            {basket.length ? (
+              <div className="no-empty">
+                <div className="checkout">Valider mon panier</div>
 
-          {basket.map((elem, index) => {
-            return (
-              <div key={index} className="all">
-                <div className="details">
-                  <div className="counter">
-                    <button
-                      className="butt"
-                      onClick={() => {
-                        const newBasket = [...basket];
-                        newBasket[index].quantity--;
-                        if (newBasket[index].quantity === 0) {
-                          newBasket.splice(index, 1);
-                        }
-                        setBasket(newBasket);
-                      }}
-                    >
-                      -
-                    </button>
-                    <p>{elem.quantity}</p>
-                    <button
-                      className="butt"
-                      onClick={() => {
-                        const newBasket = [...basket];
-                        newBasket[index].quantity++;
-                        setBasket(newBasket);
-                      }}
-                    >
-                      +
-                    </button>
+                {basket.map((elem, index) => {
+                  return (
+                    <div key={index} className="cart--container">
+                      <div className="counter">
+                        <button
+                          className="butt"
+                          onClick={() => {
+                            const newBasket = [...basket];
+                            newBasket[index].quantity--;
+                            if (newBasket[index].quantity === 0) {
+                              newBasket.splice(index, 1);
+                            }
+                            setBasket(newBasket);
+                          }}
+                        >
+                          -
+                        </button>
+                        <p>{elem.quantity}</p>
+                        <button
+                          className="butt"
+                          onClick={() => {
+                            const newBasket = [...basket];
+                            newBasket[index].quantity++;
+                            setBasket(newBasket);
+                          }}
+                        >
+                          +
+                        </button>
+                      </div>
+
+                      <p className="title">{elem.meal}</p>
+                      <p className="price">
+                        {(elem.price * elem.quantity).toFixed(2)}€
+                      </p>
+                    </div>
+                  );
+                })}
+
+                <div className="bottom-part">
+                  <div className="sous-total">
+                    <div>
+                      <p>Sous-total</p>
+                      <p>{basketPrice(0)}€</p>
+                    </div>
+                    <div>
+                      <p>Frais de livraison</p>
+                      <p>2,50€</p>
+                    </div>
                   </div>
-
-                  <p>{elem.meal}</p>
-                  <p>{(elem.price * elem.quantity).toFixed(2)}€</p>
+                  <div className="total">
+                    <p>Total</p>
+                    <p>{basketPrice(2.5)}€</p>
+                  </div>
                 </div>
               </div>
-            );
-          })}
-          {basket.length ? (
-            <div>
-              <div className="sous-total">
-                <div className="div1">
-                  <p>Sous-total</p>
-                  <p>{basketPrice(0)}€</p>
-                </div>
-                <div className="div2">
-                  <p>Frais de livraison</p>
-                  <p>2,50€</p>
-                </div>
+            ) : (
+              <div className="empty">
+                <div className="checkout">Valider mon panier</div>
+                <div className="empty--cart">Votre panier est vide</div>
               </div>
-              <div className="total">
-                <p>Total</p>
-                <p>{basketPrice(2.5)}€</p>
-              </div>
-            </div>
-          ) : (
-            <p className="empty">Votre panier est vide</p>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>
